@@ -47,12 +47,13 @@ body {
         color: white;
         background-color: #8b6463;
         border-color: white;
-
+        cursor: pointer;
 
 
         &:hover {
             background-color: rgb(89, 105, 131);
             padding: 10px 18px;
+
         }
     }
 }

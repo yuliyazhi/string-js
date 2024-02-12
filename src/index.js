@@ -60,6 +60,17 @@ btn_example.addEventListener("click", () => {
 
 
 // Задача 12.1
+// Спросите у пользователя телефонный номер и выведете его в нормализованном виде. На вход может прийти номер в формате:
+
+// - +79235050505
+// - 89235050505
+// - 8 923 5050505
+// - 7(923) 5050-505
+
+// И с любым сочетанием пробелов, скобок и тире.
+
+// Программа должна вывести номер в формате: `+79235050505`
+
 // находим "главный" элемент нашей страницы и сохраняем ссылку на него в константу
 const task_1 = document.querySelector(".task_1"); // поиск по class
 const input_1 = task_1.querySelector("#input"); // поиск по id
@@ -99,6 +110,7 @@ btn_1.addEventListener("click", () => {
 });
 
 //Задача 12.2
+// Пользователь вводит строку. Нужно сформировать и вывести массив из всех чисел в этой строке.
 
 const task_2 = document.querySelector(".task_2"); // поиск по class
 const input_2 = task_2.querySelector("#input"); // поиск по id
@@ -178,6 +190,7 @@ btn_2.addEventListener("click", () => {
 
 
 //Задача 12.3
+// Подсчитайте количество строчных и прописных букв в строке. Считается, что в строке могут быть только английские буквы и пробелы.
 const task_3 = document.querySelector(".task_3"); // поиск по class
 const input_3 = task_3.querySelector("#input"); // поиск по id
 const btn_3 = task_3.querySelector(".btn");
@@ -207,17 +220,86 @@ btn_3.addEventListener("click", () => {
             return c.length;
         }
 
-        result_3.textContent = `Прописных:${getUpperCase(text)}, строчных: ${getLowCase(text)}`;
+        result_3.textContent = `Прописных: ${getUpperCase(text)}, строчных: ${getLowCase(text)}`;
         input_3.value = "";
 
     }
 }
 
 );
+// const task_3 = document.querySelector(".task_3"); // поиск по class
+// const input_3 = task_3.querySelector("#input"); // поиск по id
+// const btn_3 = task_3.querySelector(".btn");
+// const result_3 = task_3.querySelector('.result');
 
+
+// btn_3.addEventListener("click", () => {
+
+//     const text = input_3.value;
+
+//     if (text) {
+
+
+//         let arrText = text.split("");
+//         let result = arrText.filter((elem) => elem !== " ");
+//         let arrTextToLowerCase = result.map((elem) => elem.toLowerCase());
+
+
+
+//         console.log(result);
+
+//         let counterUpper = 0;
+//         let counterLower = 0;
+//         for (let i = 0; i < result.length; i++) {
+//             if (result[i] === arrTextToLowerCase[i]) {
+//                 counterLower += 1;
+//             } else {
+//                 counterUpper += 1;
+//             }
+//         }
+//         //["O", "n", "e", "T", "w", "o"]
+//         //["o", "n", "e", "t", "w", "o"]
+
+//         //"O" == "o"
+
+//         result_3.textContent = `Прописных:${counterUpper}, строчных: ${counterLower}`;
+//         input_3.value = "";
+//     }
+// });
+
+
+// const task_3 = document.querySelector(".task_3"); // поиск по class
+// const input_3 = task_3.querySelector("#input"); // поиск по id
+// const btn_3 = task_3.querySelector(".btn");
+// const result_3 = task_3.querySelector('.result');
+
+
+// btn_3.addEventListener("click", () => {
+
+//     const text = input_3.value;
+
+//     if (text) {
+//         let counterUpper = 0;
+//         let counterLower = 0;
+
+//         let arrText = text.split("").filter((elem) => elem !== " ");
+
+//         arrText.forEach((elem) => {
+//             if (elem == elem.toLowerCase()) {
+//                 counterLower++;
+//             } else {
+//                 counterUpper++;
+//             }
+//         });
+
+//         result_3.textContent = `Прописных:${counterUpper}, строчных: ${counterLower}`;
+//         input_3.value = "";
+//     }
+// });
 
 
 //Задача 12.4
+// Выведете самое длинное слово в предложении и его длину (слова разбиты пробелами).
 const task_4 = document.querySelector(".task_4"); // поиск по class
 const input_4 = task_4.querySelector("#input"); // поиск по id
 const btn_4 = task_4.querySelector(".btn");
@@ -230,11 +312,148 @@ btn_4.addEventListener("click", () => {
 
     if (text) {
 
+        //"Один два три"
+        let arrWords = text.split(" ");
+        //["Один", "два", "три"]
 
-        result_4.textContent = `ответ ${a}`;
+        let arrLength = arrWords.map((elem) => elem.length);
+        //[4, 3, 3]
+        let maxLength = Math.max(...arrLength);
+
+        let indexMax = arrLength.indexOf(maxLength);
+
+        let word = arrWords[indexMax];
+
+        result_4.textContent = `Слово: "${word}", длина: ${maxLength}`;
+
         input_4.value = "";
-
     }
-}
+});
 
+
+// const task_4 = document.querySelector(".task_4"); // поиск по class
+// const input_4 = task_4.querySelector("#input"); // поиск по id
+// const btn_4 = task_4.querySelector(".btn");
+// const result_4 = task_4.querySelector('.result');
+
+// btn_4.addEventListener("click", () => {
+
+//     const text = input_4.value;
+
+//     if (text) {
+//         //"Один два три"
+//         let textSplit = text.split(" ");
+//         //["Один", "два", "три"]
+//         let maxWord = textSplit[0]; предположим что самое длинное слово -самое первое
+//         let maxLength = textSplit[0].length;
+
+//         textSplit.forEach((elem) => {
+//             if (elem.length > maxLength) {
+//                 maxWord = elem;
+//                 maxLength = elem.length;
+//             }
+//         });
+
+//         result_4.textContent = `Слово: "${maxWord}", длина: ${maxLength}`;
+//         input_4.value = "";
+//     }
+// });
+
+
+//Задача 12.5
+// Пользователь вводит слово. Если оно является перевёртышем выведете true иначе false. Слово-перевёртыш - это слово, которое одинаково читается с начала и с конца. Слова могут быть как на английском, так и на русском.
+const task_5 = document.querySelector(".task_5"); // поиск по class
+const input_5 = task_5.querySelector("#input"); // поиск по id
+const btn_5 = task_5.querySelector(".btn");
+const result_5 = task_5.querySelector('.result');
+
+
+btn_5.addEventListener("click", () => {
+
+    const word = input_5.value;
+
+    if (word) {
+
+
+        let arrChar = word.split("");
+
+        let arr = [];
+
+        for (let i = arrChar.length - 1; i >= 0; i--) {
+
+            let elem = arrChar[i];
+            arr.push(elem)
+        }
+
+
+        let changeling = "";
+
+
+        for (let a = 0; a < arr.length; a++) {
+            if (arr[a] === arrChar[a]) {
+
+                changeling = true;
+            } else {
+                changeling = false;
+                break;
+            }
+
+        } result_5.textContent = changeling;
+        input_5.value = "";
+    }
+
+
+}
+);
+
+//Задача 12.6
+// Удалите лишние пробелы из строки. Пробелы лишние если они в начале или в конце строки, а также если между словами больше одного пробела. Считается, что строка состоит только из букв и пробелов.
+const task_6 = document.querySelector(".task_6"); // поиск по class
+const input_6 = task_6.querySelector("#input"); // поиск по id
+const btn_6 = task_6.querySelector(".btn");
+const result_6 = task_6.querySelector('.result');
+
+
+btn_6.addEventListener("click", () => {
+
+    const text = input_6.value;
+
+    if (text) {
+
+        let arr = text.split(" ");
+        let arrWithoutEmpty = arr.filter((elem) => elem != "")
+        let arrToString = arrWithoutEmpty.join(" ");
+
+        result_6.textContent = `"${arrToString}"`;
+        input_6.value = "";
+    }
+
+}
+);
+
+
+//Задача 12.7.
+// Дана строка, сделайте первую букву каждого слова прописной (большой).
+
+const task_7 = document.querySelector(".task_7"); // поиск по class
+const input_7 = task_7.querySelector("#input"); // поиск по id
+const btn_7 = task_7.querySelector(".btn");
+const result_7 = task_7.querySelector('.result');
+
+
+btn_7.addEventListener("click", () => {
+
+    const text = input_7.value;
+
+    if (text) {
+
+        let arr = text.split(" ");
+
+        let arrUpFirstLetter = arr.map((elem) => elem[0].toUpperCase() + elem.slice(1));
+
+        result_7.textContent = arrUpFirstLetter;
+        input_7.value = "";
+    }
+
+}
 );

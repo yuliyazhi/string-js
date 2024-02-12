@@ -1,24 +1,41 @@
 @import 'style/normalize.css';
-.task-1 {
+body {
+  background-color: rgba(237, 197, 164, 0.101);
+}
+
+.task {
   margin: 30px;
 }
-
-.input-form {
+.task .input-form {
   display: flex;
   width: 30%;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
-
-.input-text {
+.task .input-form .input-text {
   display: flex;
   flex-direction: column;
 }
-
-#input {
+.task .input-form .input-text #input {
   margin-top: 5px;
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: #8b6463;
+}
+.task .btn {
+  align-self: flex-end;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: white;
+  background-color: #8b6463;
+  border-color: white;
+  cursor: pointer;
+}
+.task .btn:hover {
+  background-color: rgb(89, 105, 131);
+  padding: 10px 18px;
 }
 
-.btn {
-  align-self: flex-end;
+.result {
+  color: #c7433d;
 }/*# sourceMappingURL=index.css.map */
