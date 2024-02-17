@@ -150,7 +150,7 @@ btn_2.addEventListener("click", () => {
 }
 
 );
-// Задача 12.2 циклом
+// Задача 12.2 решение циклом
 // btn2.addEventListener("click", () => {
 //     const text = input2.value;
 
@@ -227,6 +227,7 @@ btn_3.addEventListener("click", () => {
 }
 
 );
+// ***********Решение без регулярных выражений
 // const task_3 = document.querySelector(".task_3"); // поиск по class
 // const input_3 = task_3.querySelector("#input"); // поиск по id
 // const btn_3 = task_3.querySelector(".btn");
@@ -401,10 +402,23 @@ btn_5.addEventListener("click", () => {
         } result_5.textContent = changeling;
         input_5.value = "";
     }
+    // let a = string.split("");
 
+    //   let b = a.toReversed(); 
+
+    //   let newString = b.join("");
+
+    // 	console.log(string === newString);
+    // сократили
+    // let newString = string.split("").toReversed().join("");
+
+    // console.log(string === newString);
 
 }
 );
+
+
+
 
 //Задача 12.6
 // Удалите лишние пробелы из строки. Пробелы лишние если они в начале или в конце строки, а также если между словами больше одного пробела. Считается, что строка состоит только из букв и пробелов.
@@ -427,7 +441,9 @@ btn_6.addEventListener("click", () => {
         result_6.textContent = `"${arrToString}"`;
         input_6.value = "";
     }
+    //     const s = text.trim();  метод trim для удаления слева- справа
 
+    //     let arrWithoutEmpty = arr.split(" ").filter((elem) => elem != "").join(" ");
 }
 );
 
@@ -457,3 +473,147 @@ btn_7.addEventListener("click", () => {
 
 }
 );
+
+//Задача 12.8.
+// На вход подаётся строка вида "12+23=35". 
+// Выведете на экран true если выражение верно или false если выражение не верно.
+
+const task_8 = document.querySelector(".task_8"); 
+const input_8 = task_8.querySelector("#input"); 
+const btn_8 = task_8.querySelector(".btn");
+const result_8 = task_8.querySelector('.result');
+
+
+btn_8.addEventListener("click", () => {
+
+    const text = input_8.value;
+
+    if (text) {
+
+        let total;
+        let res;
+        
+        let textDevide = text.split("=");
+        const task = textDevide[0];        
+        let taskElem = task.split("");        
+        let taskElemNum = taskElem.map((elem) => parseInt(elem));        
+        let taskElemNumUnite = taskElemNum.join("");          
+        let indexOperation  = taskElemNumUnite.indexOf("NaN");        
+        let result = parseInt(textDevide[1]);        
+        let onePart  = text.slice(0, indexOperation);        
+        let oneNum = parseInt(onePart);        
+        let twoPart  = text.slice(indexOperation + 1,text.lenth);        
+        let twoNum = parseInt(twoPart);
+                          
+        if( text.includes("+")){
+          res = oneNum + twoNum;    
+          }else  if( text.includes("-")){
+           res = oneNum - twoNum;
+          }else  if( text.includes("*")){
+           res = oneNum * twoNum;
+          }else {
+           res = oneNum / twoNum;
+          }
+            
+        if (res === result) {
+            total = true;
+        } else {
+            total = false};
+          
+        result_8.textContent = `${text}  - ${total}`;
+        input_8.value = "";
+     }
+        
+}
+);
+        
+
+// // ------------------ 2- е решение
+//         let total;
+//         let res;
+//         let arrOperations = ["+", "-", "*", "/"];
+        
+//         let textDevide = text.split("=");
+//         let task = textDevide[0];
+//         let taskElem = task.split("");
+//         let operation = taskElem.filter( (elem) => arrOperations.indexOf(elem)>-1).toString();
+//         // ищем одинаковые элементы в разныx массивах
+//         let indexOperation = text.indexOf(operation);
+//         let result = parseInt(textDevide[1]);
+//         let onePart  = taskElem.slice(0, indexOperation).join("");
+//         let oneNum = parseInt(onePart);
+//         let twoPart  = taskElem.slice(indexOperation+1,taskElem.length).join("");
+//         let twoNum = parseInt(twoPart);
+        
+//         if( operation == "+"){
+//           res = oneNum + twoNum;    
+//           }else  if( operation =="-"){
+//            res = oneNum - twoNum;
+//           }else  if( operation =="*"){
+//            res = oneNum * twoNum;
+//           } else {
+//            res = oneNum / twoNum;
+//           }
+                   
+//         if (res === result) {
+//             total = true;
+//         } else {
+//             total = false};
+//             result_8.textContent = `${text}  - ${total}`;
+//                     input_8.value = "";
+//       }
+                    
+// }
+// );
+        
+           
+
+       
+
+
+
+
+// ************************
+// черновик
+// const text = "12+23=35";
+  
+// //1
+// const arr = text.split("="); --> ["12+23", "35"]
+// const result = parseInt(arr[1]);
+
+// //2
+// const arrOperations = ["+", "-", "*", "/"];
+
+// arr[0].split("") --> ["1","2","+","2","3",]
+
+// const operation = arrOperations[0];
+
+// //3
+// const numOne = 12;
+// const numTwo = 23;
+
+// //4
+// let res;
+// switch (operation) {
+//   case "+":
+//     res = numOne + numTwo;
+//     break;
+//   case "-":
+//     res = numOne - numTwo;
+//     break;
+//   case "*":
+//     res = numOne * numTwo;
+//     break;
+//   case "/":
+//     res = numOne / numTwo;
+//     break;
+//   }
+
+// //5
+// if (res !== undefined) {
+//   res === result
+// } else {
+    
+// }
+
+
