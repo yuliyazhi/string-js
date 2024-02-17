@@ -386,9 +386,8 @@ btn_5.addEventListener("click", () => {
             arr.push(elem)
         }
 
-
+//  цикл ниже не нужнен, т.к. можно просто сранвить строки, не сравнивая массивы.
         let changeling = "";
-
 
         for (let a = 0; a < arr.length; a++) {
             if (arr[a] === arrChar[a]) {
@@ -402,6 +401,9 @@ btn_5.addEventListener("click", () => {
         } result_5.textContent = changeling;
         input_5.value = "";
     }
+    //************** */
+    //  2 решение
+
     // let a = string.split("");
 
     //   let b = a.toReversed(); 
@@ -416,9 +418,6 @@ btn_5.addEventListener("click", () => {
 
 }
 );
-
-
-
 
 //Задача 12.6
 // Удалите лишние пробелы из строки. Пробелы лишние если они в начале или в конце строки, а также если между словами больше одного пробела. Считается, что строка состоит только из букв и пробелов.
@@ -464,7 +463,6 @@ btn_7.addEventListener("click", () => {
     if (text) {
 
         let arr = text.split(" ");
-
         let arrUpFirstLetter = arr.map((elem) => elem[0].toUpperCase() + elem.slice(1));
 
         result_7.textContent = arrUpFirstLetter;
@@ -560,7 +558,7 @@ btn_8.addEventListener("click", () => {
 //         } else {
 //             total = false};
 //             result_8.textContent = `${text}  - ${total}`;
-//                     input_8.value = "";
+//             input_8.value = "";
 //       }
                     
 // }
