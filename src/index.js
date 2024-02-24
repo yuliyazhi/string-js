@@ -112,6 +112,7 @@ btn_1.addEventListener("click", () => {
 //Задача 12.2
 // Пользователь вводит строку. Нужно сформировать и вывести массив из всех чисел в этой строке.
 
+// решение с помощью регулярного выражения
 const task_2 = document.querySelector(".task_2"); // поиск по class
 const input_2 = task_2.querySelector("#input"); // поиск по id
 const btn_2 = task_2.querySelector(".btn");
@@ -121,35 +122,49 @@ const result_2 = task_2.querySelector('.result');
 btn_2.addEventListener("click", () => {
     const text = input_2.value;
     if (text) {
-        // разделяем текст на элементы и записываем их в массив 
-        const textSplit = text.split("");
-
-        // преобразуем строку в число, получаем 
-        let textMap = textSplit.map((char) => parseInt(char));
-        console.log(textMap)
-
-        // соединяем в строку элементы массива
-        let textJoin = textMap.join("");
-        // console.log(textJoin)
-
-        // делим строку по разделтьелю Nan и получаем массив строк
-        let textSplit2 = textJoin.split("NaN");
-        // console.log(textSplit2)
-
-        // фильтруем только числа
-        let numbers = textSplit2.filter((char) => Boolean(char));
-        // console.log(numbers)
-
-
+        
+        const numbers = text.match(/\d+/g);
         result_2.textContent = numbers;
-
-        // очищаем поле ввода
         input_2.value = "";
 
     }
 }
 
 );
+
+
+// btn_2.addEventListener("click", () => {
+//     const text = input_2.value;
+//     if (text) {
+//         // разделяем текст на элементы и записываем их в массив 
+//         const textSplit = text.split("");
+
+//         // преобразуем строку в число, получаем 
+//         let textMap = textSplit.map((char) => parseInt(char));
+//         console.log(textMap)
+
+//         // соединяем в строку элементы массива
+//         let textJoin = textMap.join("");
+//         // console.log(textJoin)
+
+//         // делим строку по разделтьелю Nan и получаем массив строк
+//         let textSplit2 = textJoin.split("NaN");
+//         // console.log(textSplit2)
+
+//         // фильтруем только числа
+//         let numbers = textSplit2.filter((char) => Boolean(char));
+//         // console.log(numbers)
+
+
+//         result_2.textContent = numbers;
+
+//         // очищаем поле ввода
+//         input_2.value = "";
+
+//     }
+// }
+
+// );
 // Задача 12.2 решение циклом
 // btn2.addEventListener("click", () => {
 //     const text = input2.value;
@@ -190,43 +205,61 @@ btn_2.addEventListener("click", () => {
 
 
 //Задача 12.3
-// Подсчитайте количество строчных и прописных букв в строке. Считается, что в строке могут быть только английские буквы и пробелы.
+// Подсчитайте количество строчных и прописных букв в строке.
+// Считается, что в строке могут быть только английские буквы и пробелы.
+
 const task_3 = document.querySelector(".task_3"); // поиск по class
 const input_3 = task_3.querySelector("#input"); // поиск по id
 const btn_3 = task_3.querySelector(".btn");
 const result_3 = task_3.querySelector('.result');
-
 
 btn_3.addEventListener("click", () => {
 
     const text = input_3.value;
 
     if (text) {
-
-        function getUpperCase(text) {
-            let a = text.match(/[A-Z]/g);
-            if (a === null) {
-                return 0;
-            }
-            return a.length;
-        }
-
-
-        function getLowCase(text) {
-            let c = text.match(/[a-z]/g)
-            if (c === null) {
-                return 0;
-            }
-            return c.length;
-        }
-
-        result_3.textContent = `Прописных: ${getUpperCase(text)}, строчных: ${getLowCase(text)}`;
+       
+        let a = text.match(/[A-Z]/g).length;
+        let c = text.match(/[a-z]/g).length;
+           
+        result_3.textContent = `Прописных: ${a}, строчных: ${c}`;
         input_3.value = "";
 
     }
 }
-
 );
+
+// функции и регулярные выражения
+// btn_3.addEventListener("click", () => {
+
+//     const text = input_3.value;
+
+//     if (text) {
+
+//         function getUpperCase(text) {
+//             let a = text.match(/[A-Z]/g);
+//             if (a === null) {
+//                 return 0;
+//             }
+//             return a.length;
+//         }
+
+
+//         function getLowCase(text) {
+//             let c = text.match(/[a-z]/g)
+//             if (c === null) {
+//                 return 0;
+//             }
+//             return c.length;
+//         }
+
+//         result_3.textContent = `Прописных: ${getUpperCase(text)}, строчных: ${getLowCase(text)}`;
+//         input_3.value = "";
+
+//     }
+// }
+
+// );
 // ***********Решение без регулярных выражений
 // const task_3 = document.querySelector(".task_3"); // поиск по class
 // const input_3 = task_3.querySelector("#input"); // поиск по id
