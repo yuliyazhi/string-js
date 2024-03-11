@@ -77,20 +77,12 @@ const input_1 = task_1.querySelector("#input"); // поиск по id
 const btn_1 = task_1.querySelector(".btn");
 const result_1 = task_1.querySelector('.result');
 
-
 btn_1.addEventListener("click", () => {
     const phone = input_1.value;
 
     if (phone) {
-        const arrStrPhone = phone.split("");
-
-        let arrNumPhone = arrStrPhone.map((char) => parseInt(char));
-
-        // let arrNumFiltered = arrNumPhone.filter((elem) => Boolean(elem) || elem === 0);
-        let arrNumPhoneFiltered = arrNumPhone.filter((elem) => !isNaN(elem));
-
-
-        let strPhone = arrNumPhoneFiltered.join("");
+        let strPhone = phone.replace(/\D/g, "");
+        console.log(strPhone)
 
         if (strPhone[0] == "8" || strPhone[0] == "7") {
             strPhone = strPhone.slice(1);
@@ -101,13 +93,74 @@ btn_1.addEventListener("click", () => {
             return;
         }
 
-        let resultPhone = "+7" + strPhone;
+        let resultPhone = "+7" + strPhone; 
 
         result_1.textContent = resultPhone;
 
         input_1.value = "";
     }
 });
+
+
+//     if (phone) {
+//         const arrStrPhone = phone.split("");
+
+//         let arrNumPhone = arrStrPhone.map((char) => parseInt(char));
+
+//         // let arrNumFiltered = arrNumPhone.filter((elem) => Boolean(elem) || elem === 0);
+//         let arrNumPhoneFiltered = arrNumPhone.filter((elem) => !isNaN(elem));
+
+
+//         let strPhone = arrNumPhoneFiltered.join("");
+
+//         if (strPhone[0] == "8" || strPhone[0] == "7") {
+//             strPhone = strPhone.slice(1);
+//         }
+
+//         if (strPhone.length != 10) {
+//             result_1.textContent = "Введите верный номер";
+//             return;
+//         }
+
+//         let resultPhone = "+7" + strPhone;
+
+//         result_1.textContent = resultPhone;
+
+//         input_1.value = "";
+//     }
+// });
+
+
+// btn_1.addEventListener("click", () => {
+//     const phone = input_1.value;
+
+//     if (phone) {
+//         const arrStrPhone = phone.split("");
+
+//         let arrNumPhone = arrStrPhone.map((char) => parseInt(char));
+
+//         // let arrNumFiltered = arrNumPhone.filter((elem) => Boolean(elem) || elem === 0);
+//         let arrNumPhoneFiltered = arrNumPhone.filter((elem) => !isNaN(elem));
+
+
+//         let strPhone = arrNumPhoneFiltered.join("");
+
+//         if (strPhone[0] == "8" || strPhone[0] == "7") {
+//             strPhone = strPhone.slice(1);
+//         }
+
+//         if (strPhone.length != 10) {
+//             result_1.textContent = "Введите верный номер";
+//             return;
+//         }
+
+//         let resultPhone = "+7" + strPhone;
+
+//         result_1.textContent = resultPhone;
+
+//         input_1.value = "";
+//     }
+// });
 
 //Задача 12.2
 // Пользователь вводит строку. Нужно сформировать и вывести массив из всех чисел в этой строке.
@@ -119,12 +172,18 @@ const btn_2 = task_2.querySelector(".btn");
 const result_2 = task_2.querySelector('.result');
 
 
+
 btn_2.addEventListener("click", () => {
     const text = input_2.value;
     if (text) {
-        
-        const numbers = text.match(/\d+/g);
-        result_2.textContent = numbers;
+     const numbers = text.match(/\d+/g);//получаем массив строк
+    //  const numbers = text.split(/\D+/).filter((elem) => elem);
+
+       let numbersStr = numbers.map((elem) => Number(elem)).join(", ");
+      //получаем массив чисел. 
+      //Join здесь для оформления ответа как в задаче. Также можно сразу в const numbers = text.match(/\d+/g).join(", ");
+
+        result_2.textContent = `[ ${numbersStr} ]`;
         input_2.value = "";
 
     }
@@ -463,14 +522,13 @@ const result_6 = task_6.querySelector('.result');
 btn_6.addEventListener("click", () => {
 
     const text = input_6.value;
-
+//с помощью рег выражений
     if (text) {
 
-        let arr = text.split(" ");
-        let arrWithoutEmpty = arr.filter((elem) => elem != "")
-        let arrToString = arrWithoutEmpty.join(" ");
-
-        result_6.textContent = `"${arrToString}"`;
+        let textTrim = text.trim();
+        let textWithoutSpace = textTrim.replace(/\s+/g, " ");
+        
+        result_6.textContent = `"${textWithoutSpace}"`;
         input_6.value = "";
     }
     //     const s = text.trim();  метод trim для удаления слева- справа
@@ -478,6 +536,24 @@ btn_6.addEventListener("click", () => {
     //     let arrWithoutEmpty = arr.split(" ").filter((elem) => elem != "").join(" ");
 }
 );
+
+
+//     if (text) {
+
+//         let arr = text.split(" ");
+
+
+//         let arrWithoutEmpty = arr.filter((elem) => elem != "")
+//         let arrToString = arrWithoutEmpty.join(" ");
+
+//         result_6.textContent = `"${arrToString}"`;
+//         input_6.value = "";
+//     }
+//     //     const s = text.trim();  метод trim для удаления слева- справа
+
+//     //     let arrWithoutEmpty = arr.split(" ").filter((elem) => elem != "").join(" ");
+// }
+// );
 
 
 //Задача 12.7.
@@ -520,20 +596,17 @@ btn_8.addEventListener("click", () => {
     const text = input_8.value;
 
     if (text) {
-
+// решение с рег выражениями
         let total;
         let res;
         
         let textDevide = text.split("=");
         const task = textDevide[0];        
-        let taskElem = task.split("");        
-        let taskElemNum = taskElem.map((elem) => parseInt(elem));        
-        let taskElemNumUnite = taskElemNum.join("");          
-        let indexOperation  = taskElemNumUnite.indexOf("NaN");        
+        let numsOfTask = task.match(/\d+/g);  
         let result = parseInt(textDevide[1]);        
-        let onePart  = text.slice(0, indexOperation);        
+        let onePart  = numsOfTask[0];        
         let oneNum = parseInt(onePart);        
-        let twoPart  = text.slice(indexOperation + 1,text.lenth);        
+        let twoPart  = numsOfTask[1]     
         let twoNum = parseInt(twoPart);
                           
         if( text.includes("+")){
@@ -551,12 +624,52 @@ btn_8.addEventListener("click", () => {
         } else {
             total = false};
           
-        result_8.textContent = `${text}  - ${total}`;
+        result_8.textContent = `"${text}"  - ${total}`;
         input_8.value = "";
      }
         
 }
 );
+
+
+
+
+//         let total;
+//         let res;
+        
+//         let textDevide = text.split("=");
+//         const task = textDevide[0];        
+//         let taskElem = task.split("");        
+//         let taskElemNum = taskElem.map((elem) => parseInt(elem));        
+//         let taskElemNumUnite = taskElemNum.join("");          
+//         let indexOperation  = taskElemNumUnite.indexOf("NaN");        
+//         let result = parseInt(textDevide[1]);        
+//         let onePart  = text.slice(0, indexOperation);        
+//         let oneNum = parseInt(onePart);        
+//         let twoPart  = text.slice(indexOperation + 1,text.lenth);        
+//         let twoNum = parseInt(twoPart);
+                          
+//         if( text.includes("+")){
+//           res = oneNum + twoNum;    
+//           }else  if( text.includes("-")){
+//            res = oneNum - twoNum;
+//           }else  if( text.includes("*")){
+//            res = oneNum * twoNum;
+//           }else {
+//            res = oneNum / twoNum;
+//           }
+            
+//         if (res === result) {
+//             total = true;
+//         } else {
+//             total = false};
+          
+//         result_8.textContent = `${text}  - ${total}`;
+//         input_8.value = "";
+//      }
+        
+// }
+// );
         
 
 // // ------------------ 2- е решение
